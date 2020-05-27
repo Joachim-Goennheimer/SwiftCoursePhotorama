@@ -11,7 +11,7 @@
 
 import UIKit
 
-class PhotosViewController: UIViewController, UICollectionViewDelegate {
+class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
 //    @IBOutlet var imageView: UIImageView!
     
@@ -89,5 +89,19 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         default:
             preconditionFailure("Unexpected segue identifier")
         }
+    }
+    
+//    silver challenge
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+      let collectionViewWidth = collectionView.bounds.size.width
+//        have no idea why but with 4.0 it showed 3 photos, with 5.0 it showed 5 photos. With 4.5 it shows exactly 4 photos
+        let numberOfItemsPerRow: CGFloat = 4.5
+      let itemWidth = collectionViewWidth / numberOfItemsPerRow
+      
+      return CGSize(width: itemWidth, height: itemWidth)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+      collectionView.reloadData()
     }
 }
