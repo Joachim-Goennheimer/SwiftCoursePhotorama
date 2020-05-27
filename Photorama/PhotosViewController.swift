@@ -58,21 +58,23 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
 //        silver challenge chapter 20. Comment out fetchInterestinPhotos and uncomment fetchRecentPhotos
 //        in order to fetch recent photos.
 //        store.fetchRecentPhotos() {
+        updateDataSource()
         store.fetchInterestingPhotos() {
             (photosResult) -> Void in
-            
-            switch photosResult {
-            case let .success(photos):
-                print("Successfully found \(photos.count) photos.")
-//                if let firstPhoto = photos.first {
-//                    self.updateImageView(for: firstPhoto)
-//                }
-                self.photoDataSource.photos = photos
-            case let .failure(error):
-                print("Error fetching interesting photos: \(error)")
-                self.photoDataSource.photos.removeAll()
-            }
-            self.collectionView.reloadSections(IndexSet(integer: 0))
+//
+//            switch photosResult {
+//            case let .success(photos):
+//                print("Successfully found \(photos.count) photos.")
+////                if let firstPhoto = photos.first {
+////                    self.updateImageView(for: firstPhoto)
+////                }
+//                self.photoDataSource.photos = photos
+//            case let .failure(error):
+//                print("Error fetching interesting photos: \(error)")
+//                self.photoDataSource.photos.removeAll()
+//            }
+//            self.collectionView.reloadSections(IndexSet(integer: 0))
+            self.updateDataSource()
         }
     }
     
@@ -91,7 +93,20 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
-//    silver challenge
+    private func updateDataSource() {
+        store.fetchAllPhotos { (photosResult) in
+            switch photosResult {
+            case let .success(photos):
+                self.photoDataSource.photos = photos
+            case .failure:
+                self.photoDataSource.photos.removeAll()
+            }
+            self.collectionView.reloadSections(IndexSet(integer: 0))
+        }
+    }
+    
+    
+//    silver challenge chapter 21
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
       let collectionViewWidth = collectionView.bounds.size.width
 //        have no idea why but with 4.0 it showed 3 photos, with 5.0 it showed 5 photos. With 4.5 it shows exactly 4 photos
