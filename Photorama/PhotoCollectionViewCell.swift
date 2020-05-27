@@ -14,6 +14,25 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var spinner: UIActivityIndicatorView!
     
+    var photoDescription: String?
+    
+    override var accessibilityTraits: UIAccessibilityTraits {
+        get {
+            return UIAccessibilityTraits(rawValue: super.accessibilityTraits.rawValue | UIAccessibilityTraits.image.rawValue)
+        }
+        set {
+//            ignore attempts to set
+        }
+    }
+    override var accessibilityLabel: String? {
+        get {
+            return photoDescription
+        }
+        set {
+//            ignore attempts to set
+        }
+    }
+    
     override var isAccessibilityElement: Bool {
         get {
             return true
