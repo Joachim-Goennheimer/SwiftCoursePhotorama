@@ -50,6 +50,12 @@ class PhotoStore {
 //                print("Unexpected error with the request")
 //            }
             
+//            bronze challenge chapter 20
+            if let httpStatus = response as? HTTPURLResponse {
+                print("Status Code is: \(httpStatus.statusCode)")
+                print("Header Fields are: \(httpStatus.allHeaderFields)")
+            }
+            
             let result = self.processPhotosRequest(data: data, error: error)
             OperationQueue.main.addOperation {
                 completion(result)
@@ -57,6 +63,25 @@ class PhotoStore {
         }
         task.resume()
     }
+    
+//    silver challenge chapter 20
+        func fetchRecentPhotos(completion: @escaping (PhotosResult) -> Void) {
+            let url = FlickrAPI.recenPhotosURL
+            let request = URLRequest(url: url)
+            let task = session.dataTask(with: request) {(data, response, error) -> Void in
+    //            bronze challenge chapter 20
+                if let httpStatus = response as? HTTPURLResponse {
+                    print("Status Code is: \(httpStatus.statusCode)")
+                    print("Header Fields are: \(httpStatus.allHeaderFields)")
+                }
+                
+                let result = self.processPhotosRequest(data: data, error: error)
+                OperationQueue.main.addOperation {
+                    completion(result)
+                }
+            }
+            task.resume()
+        }
     
     private func processPhotosRequest(data: Data?, error: Error?) -> PhotosResult {
         guard let jsonData = data else {
@@ -73,6 +98,12 @@ class PhotoStore {
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
             
+
+//            bronze challenge chapter 20
+            if let httpStatus = response as? HTTPURLResponse {
+                print("Status Code is: \(httpStatus.statusCode)")
+                print("Header Fields are: \(httpStatus.allHeaderFields)")
+            }
             let result = self.processImageRequest(data: data, error: error)
             OperationQueue.main.addOperation {
                 completion(result)
