@@ -1,5 +1,5 @@
 //
-//  PhotosViewController.swift
+//  PhotosViewControllerNew.swift
 //  Photorama
 //
 //  Created by Joachim Goennheimer on 27.05.20.
@@ -8,9 +8,17 @@
 
 // import Foundation
 
+
 import UIKit
 
 class PhotosViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     
+    var store: PhotoStore!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        store.fetchInterestingPhotos()
+    }
 }
