@@ -87,14 +87,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kX3-OO-mC3">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="745"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="745" id="oAh-ak-tJu"/>
+                                </constraints>
                             </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vtU-1N-3Bu">
+                                <rect key="frame" x="0.0" y="833" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem title="Tags" id="L9b-Zg-s3R">
+                                        <connections>
+                                            <segue destination="8hX-aU-F9b" kind="presentation" identifier="showTags" id="Rc1-pU-s6Z"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="vtU-1N-3Bu" firstAttribute="trailing" secondItem="h4c-wC-zid" secondAttribute="trailing" id="0dZ-Fa-slf"/>
                             <constraint firstItem="kX3-OO-mC3" firstAttribute="leading" secondItem="h4c-wC-zid" secondAttribute="leading" id="18R-zT-2hu"/>
-                            <constraint firstItem="h4c-wC-zid" firstAttribute="bottom" secondItem="kX3-OO-mC3" secondAttribute="bottom" id="NyL-DD-5he"/>
-                            <constraint firstItem="kX3-OO-mC3" firstAttribute="top" secondItem="h4c-wC-zid" secondAttribute="top" id="XaX-99-PSe"/>
+                            <constraint firstItem="vtU-1N-3Bu" firstAttribute="top" secondItem="kX3-OO-mC3" secondAttribute="bottom" id="9Q2-PB-4TD"/>
+                            <constraint firstItem="kX3-OO-mC3" firstAttribute="top" secondItem="h4c-wC-zid" secondAttribute="top" id="lwY-wB-lBC"/>
+                            <constraint firstItem="vtU-1N-3Bu" firstAttribute="leading" secondItem="h4c-wC-zid" secondAttribute="leading" id="n0q-zc-48Z"/>
                             <constraint firstItem="h4c-wC-zid" firstAttribute="trailing" secondItem="kX3-OO-mC3" secondAttribute="trailing" id="uDk-2l-v6C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h4c-wC-zid"/>
@@ -106,7 +121,72 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WcS-On-dTE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2051" y="125"/>
+            <point key="canvasLocation" x="2050.7246376811595" y="124.55357142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="D9a-sy-5cV">
+            <objects>
+                <navigationController id="8hX-aU-F9b" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qi1-EJ-aQP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QX8-WH-ACd" kind="relationship" relationship="rootViewController" id="uEA-l3-2DR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kuw-B3-hsc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2868" y="125"/>
+        </scene>
+        <!--Tags-->
+        <scene sceneID="9Gm-qs-bPE">
+            <objects>
+                <tableViewController id="QX8-WH-ACd" customClass="TagsViewController" customModule="Photorama" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7Ll-PA-iDa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="BCx-AI-Acj" style="IBUITableViewCellStyleDefault" id="gzx-iT-47f">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gzx-iT-47f" id="ZDg-Vf-2Iv">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BCx-AI-Acj">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QX8-WH-ACd" id="cF2-8m-8GD"/>
+                            <outlet property="delegate" destination="QX8-WH-ACd" id="HhR-E0-vmu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Tags" id="YIu-CH-BcQ">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="edc-j3-T4G">
+                            <connections>
+                                <action selector="done:" destination="QX8-WH-ACd" id="Sp0-Tf-MfR"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3vA-5j-NVu">
+                            <connections>
+                                <action selector="addNewTag:" destination="QX8-WH-ACd" id="i9x-QZ-78H"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hIA-FB-DEz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3822" y="144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o38-30-IVv">
